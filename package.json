@@ -1,0 +1,24 @@
+{
+  "name": "ryu-darkcord",
+  "version": "0.0.1",
+  "license": "MIT",
+  "scripts": {
+    "compile": "npx tsc --project tsconfig.json",
+    "clean": "rmdir /s dist",
+    "start": "node dist/RyuzakiLauncher.js",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix"
+  },
+  "devDependencies": {
+    "@types/node": "^18.14.6",
+    "@typescript-eslint/eslint-plugin": "^5.54.0",
+    "@typescript-eslint/parser": "^5.54.0",
+    "eslint": "^8.35.0",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "darkcord": "^1.1.3",
+    "dotenv": "^16.0.3",
+    "winston": "^3.8.2"
+  }
+}
