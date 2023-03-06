@@ -10,7 +10,7 @@ export default class MessageCreateListener extends ListenerStructure<Ryuzaki, ev
         });
     }
 
-    execute = (message: Message) => {
+    execute(message: Message) {
         try {
             if (message.user.bot) return;
     
@@ -52,5 +52,5 @@ export default class MessageCreateListener extends ListenerStructure<Ryuzaki, ev
         } catch (err: Error | any) {
             return this.client.logger.error(err.stack, MessageCreateListener.name);
         }
-    };
+    }
 }

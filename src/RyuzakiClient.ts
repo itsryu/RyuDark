@@ -1,4 +1,4 @@
-import { Client, ClientOptions, ClientEvents, Cache } from 'darkcord';
+import { Client, ClientOptions, ClientEvents, Cache } from 'darkcord'; // BIBLIOTECA EM CONSTANTE ATUALIZAÇÃO!
 import { ListenerStructure, CommandStructure, CommandData } from './Structures';
 import { readdirSync } from 'node:fs';
 import { join } from 'node:path';
@@ -16,16 +16,16 @@ export class Ryuzaki extends Client {
         this.commands = new Cache();
         this.logger = new Logger();
         this.utils = new Utils();
-        this.developers = ['1059915193309737030'];
+        this.developers = ['1059915193309737030']; // Seu ID, ou de outros desenvolvedores;
     }
 
     async initialize() {
-        this.loadCommands(this);
-        this.loadEvents(this);
-        await super.connect();
+        this.loadCommands(this); // Carregar os módulos de comandos;
+        this.loadEvents(this); // Carregar os módulos de eventos;
+        await super.connect(); // Estabelecer conexão com o gateway;
 
-        process.on('uncaughtException', (err) => this.logger.error(err.message));
-        process.on('unhandledRejection', (err) => this.logger.error(err as string));
+        process.on('uncaughtException', (err: Error) => this.logger.error((err as Error).message));
+        process.on('unhandledRejection', (err: Error) => this.logger.error((err as Error).message));
     }
 
     async loadCommands(client: Ryuzaki) {
@@ -40,12 +40,12 @@ export class Ryuzaki extends Client {
         const commands = await Promise.all(
             commandFiles.map(async (command) => {
                 try {
-                    const CommandClass = (await import(`./Commands/${commandFolders}/${command}`)).default;
+                    const { default: CommandClass }: { default: new (client: Ryuzaki) => CommandStructure<Ryuzaki, CommandData> } = await import(`./Commands/${commandFolders}/${command}`);
                     const cmd = new CommandClass(client);
+
                     client.commands.set(cmd.data.options.name, cmd);
-                    return cmd;
                 } catch (err) {
-                    client.logger.error(`Error loading command ${command}: ${(err as Error).stack}`);
+                    return client.logger.error(`Erro ao carregar o comando ${command}: ${(err as Error).stack}`);
                 }
             })
         );
@@ -54,18 +54,16 @@ export class Ryuzaki extends Client {
     }
 
 
-    async loadEvents(client: this) {
+    async loadEvents(client: Ryuzaki) {
         type EventOptions = {
             name: keyof ClientEvents;
             once: boolean;
         };
 
-        type EventClass<Client> = new (client: Client) => ListenerStructure<Ryuzaki, EventOptions>;
-
         const eventFiles = readdirSync(join(__dirname, 'Listeners')).filter((file) => file.endsWith('.js'));
         const promises = eventFiles.map(async (file) => {
 
-            const { default: EventClass }: { default: EventClass<Client> } = await import(join(__dirname, 'Listeners', file));
+            const { default: EventClass }: { default: new (client: Ryuzaki) => ListenerStructure<Ryuzaki, EventOptions> } = await import(join(__dirname, 'Listeners', file));
             const event = new EventClass(client);
 
             if (event.options.once) {
