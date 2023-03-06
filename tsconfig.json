@@ -20,7 +20,8 @@
       "typeRoots": ["./node_modules/@types", "./src/types"],
       "experimentalDecorators": true,
       "emitDecoratorMetadata": true,
-      "baseUrl": "./src"
+      "baseUrl": "./src",
+      "skipLibCheck": true // Adicionando por hora esta propriedade.
     },
     "include": [
       "./src/**/*.ts", 
