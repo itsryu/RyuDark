@@ -20,10 +20,10 @@ class Logger {
                 winston.format.json(),
                 winston.format.colorize({
                     colors: {
-                        error: 'yellow',
+                        error: 'red',
                         warn: 'yellow',
                         info: 'green',
-                        debug: 'grey'
+                        debug: 'blue'
                     }
                 }),
                 winston.format.printf((info) => {

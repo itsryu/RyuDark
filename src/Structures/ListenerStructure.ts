@@ -1,17 +1,22 @@
 import { Awaitable, ClientEvents } from 'darkcord';
-import { Ryuzaki } from '../RyuzakiClient';
+import { RyuDark } from '../RyuClient';
 
-abstract class eventData<T extends keyof ClientEvents> {
-    name: T;
+type EventOptions = {
+    name: keyof ClientEvents;
     once: boolean;
+};
 
-    constructor(name: T) {
-        this.name = name; 
-        this.once = false;
+abstract class eventData<T extends EventOptions> {
+    name: T['name'];
+    once: T['once'];
+
+    constructor(options: T) {
+        this.name = options.name; 
+        this.once = options.once;
     } 
 }
 
-abstract class ListenerStructure<Client extends Ryuzaki, Data extends eventData<any>> {
+abstract class ListenerStructure<Client extends RyuDark, Data extends eventData<EventOptions>> {
     client: Client;
     options: Data;
 
@@ -25,4 +30,4 @@ abstract class ListenerStructure<Client extends Ryuzaki, Data extends eventData<
     }
 }
 
-export { ListenerStructure, eventData };
+export { ListenerStructure, eventData, EventOptions };

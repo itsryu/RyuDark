@@ -1,9 +1,9 @@
-import { Ryuzaki } from '../RyuzakiClient';
-import { ListenerStructure, eventData, CommandStructure, CommandData } from '../Structures/';
+import { RyuDark } from '../RyuClient';
+import { ListenerStructure, EventOptions, CommandStructure, CommandData } from '../Structures/';
 import { Constants, Message } from 'darkcord';
 
-export default class MessageCreateListener extends ListenerStructure<Ryuzaki, eventData<Constants.Events.MessageCreate>> {
-    constructor(client: Ryuzaki) {
+export default class MessageCreateListener extends ListenerStructure<RyuDark, EventOptions> {
+    constructor(client: RyuDark) {
         super(client, {
             name: Constants.Events.MessageCreate,
             once: false
@@ -22,7 +22,7 @@ export default class MessageCreateListener extends ListenerStructure<Ryuzaki, ev
 
             if (message.content.startsWith(prefix)) {
                 const [name, ...args] = message.content.slice(prefix.length).trim().split(/ +/g);
-                const command = this.client.commands.get(name) as CommandStructure<Ryuzaki, CommandData> || this.client.commands.find((command: CommandStructure<Ryuzaki, CommandData>) => command.data.options.aliases ? command.data.options.aliases && command.data.options.aliases.includes(name) : false);
+                const command = this.client.commands.get(name) as CommandStructure<RyuDark, CommandData> || this.client.commands.find((command: CommandStructure<RyuDark, CommandData>) => command.data.options.aliases ? command.data.options.aliases && command.data.options.aliases.includes(name) : false);
 
                 if (!command) {
                     return message.reply(`${message.user.username}, o comando: \`${name}\` não existe. Tente outro nome.`);
@@ -50,7 +50,7 @@ export default class MessageCreateListener extends ListenerStructure<Ryuzaki, ev
 
             }
         } catch (err: unknown) {
-            return this.client.logger.error((err as Error)?.stack || 'Unknown error', MessageCreateListener.name);
+            return this.client.logger.error((err as Error).stack || 'Unknown error', MessageCreateListener.name);
         }
     }
 }

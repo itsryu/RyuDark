@@ -1,9 +1,9 @@
 import { Constants } from 'darkcord';
-import { Ryuzaki } from './RyuzakiClient';
+import { RyuDark } from './RyuClient';
 import { config } from 'dotenv';
 config({ path: './.env' });
 
-new Ryuzaki(process.env.CLIENT_TOKEN as string, {
+new RyuDark(process.env.CLIENT_TOKEN as string, {
     gateway: {
         intents: [
             Constants.GatewayIntentBits.Guilds,

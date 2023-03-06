@@ -1,5 +1,5 @@
 import { CommandStructure, CommandData } from '../../Structures';
-import { Ryuzaki } from '../../RyuzakiClient';
+import { RyuDark } from '../../RyuClient';
 import { Message } from 'darkcord';
 
 class PingCommandData extends CommandData {
@@ -16,12 +16,15 @@ class PingCommandData extends CommandData {
     }
 }
 
-export default class PingCommand extends CommandStructure<Ryuzaki, PingCommandData> {
-    constructor(client: Ryuzaki) {
+export default class PingCommand extends CommandStructure<RyuDark, PingCommandData> {
+    constructor(client: RyuDark) {
         super(client, new PingCommandData());
     }
 
     execute({ message }: { message: Message }): Promise<any> {
-        return message.reply((String(this.client.websocket.ping) + 'ms'));
+        const messageMs: string = (Date.now() - message.timestamp) + 'ms';
+        const clientMs: string = this.client.websocket.ping + 'ms';
+
+        return message.reply(`Latência da API: \`${clientMs}\`\nLatência da mensagem: \`${messageMs}\``);
     }
 }

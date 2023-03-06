@@ -1,5 +1,5 @@
 import { CommandInteraction, Awaitable } from 'darkcord';
-import { Ryuzaki } from '../RyuzakiClient';
+import { RyuDark } from '../RyuClient';
 
 type commandRaw = {
     name: string;
@@ -19,7 +19,7 @@ abstract class CommandData {
     }
 }
 
-abstract class CommandStructure<Client extends Ryuzaki, Data extends CommandData> {
+abstract class CommandStructure<Client extends RyuDark, Data extends CommandData> {
     client: Client;
     data: Data;
     interaction?: CommandInteraction;

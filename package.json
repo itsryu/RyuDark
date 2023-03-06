@@ -1,9 +1,10 @@
 {
-  "name": "ryu-darkcord",
-  "version": "0.0.2",
+  "name": "ryudark",
+  "description": "Aplicação em Typescript utilizando a biblioteca Darkcord.",
+  "version": "0.0.3",
   "license": "MIT",
   "scripts": {
-    "compile": "npx tsc --project tsconfig.json",
+    "compile": "npx tsc --project tsconfig.json --pretty --noEmitOnError && echo Arquivos compilados com sucesso!",
     "clean": "rmdir /s dist",
     "start": "node dist/RyuzakiLauncher.js",
     "lint": "eslint . --ext .ts",
