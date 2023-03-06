@@ -15,7 +15,7 @@ export default class MessageCreateListener extends ListenerStructure<RyuDark, Ev
             if (message.user.bot) return;
 
             if (message.content.match(this.client.utils.GetMention(this.client.user?.id as string))) {
-                message.reply(`Oi ${message.user.username}, o meu nome é ${this.client.user?.username}!`);
+                message.reply(`Oi ${message.user}, o meu nome é ${this.client.user?.username}!`);
             }
 
             const prefix = process.env.PREFIX as string ?? 'r.';
@@ -25,11 +25,11 @@ export default class MessageCreateListener extends ListenerStructure<RyuDark, Ev
                 const command = this.client.commands.get(name) as CommandStructure<RyuDark, CommandData> || this.client.commands.find((command: CommandStructure<RyuDark, CommandData>) => command.data.options.aliases ? command.data.options.aliases && command.data.options.aliases.includes(name) : false);
 
                 if (!command) {
-                    return message.reply(`${message.user.username}, o comando: \`${name}\` não existe. Tente outro nome.`);
+                    return message.reply(`${message.user}, o comando: \`${name}\` não existe. Tente outro nome.`);
                 }
 
                 if (command.data.options.config.devOnly && !this.client.developers.some((id) => [id].includes(message.user.id))) {
-                    return message.reply(`${message.user.username}, este comando \`${command.data.options.name}\` só pode ser executado pelos desenvolvedores do BOT.`);
+                    return message.reply(`${message.user}, este comando \`${command.data.options.name}\` só pode ser executado pelos desenvolvedores do BOT.`);
                 }
 
                 // Execução:
@@ -45,7 +45,7 @@ export default class MessageCreateListener extends ListenerStructure<RyuDark, Ev
                     this.client.logger.error(err.message, command.data.options.name);
                     this.client.logger.warn(err.stack, command.data.options.name);
 
-                    return message.reply(`Ocorreu um erro ao executar o comando: \`${command.data.options.name}\`, os desenvolvedores já estão ciente do problema, tente novamente mais tarde.`);
+                    return message.reply(`${message.user}, ocorreu um erro ao executar o comando: \`${command.data.options.name}\`, os desenvolvedores já estão ciente do problema, tente novamente mais tarde.`);
                 });
 
             }

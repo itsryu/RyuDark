@@ -13,11 +13,5 @@ new RyuDark(process.env.CLIENT_TOKEN as string, {
             Constants.GatewayIntentBits.GuildPresences
         ]
     },
-    partials: [
-        Constants.Partials.Reaction,
-        Constants.Partials.User,
-        Constants.Partials.Role,
-        Constants.Partials.Emoji
-    ],
     plugins: []
 }).initialize();

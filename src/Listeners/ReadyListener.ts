@@ -14,7 +14,7 @@ export default class ReadyListener extends ListenerStructure<RyuDark, EventOptio
         try {
             this.client.logger.info(`${this.client.user?.username} has been loaded completely and it's in ${this.client.guilds.cache.size} guilds.`, 'Ready');
         } catch (err: unknown) {
-            this.client.logger.error(String((err as Error).stack), ReadyListener.name);
+            return this.client.logger.error((err as Error).stack || 'Unknown error', ReadyListener.name);
         }
     }
 }
