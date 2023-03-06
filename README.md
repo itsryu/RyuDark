@@ -4,7 +4,7 @@
 </head>
 <body>
 	<h1>Projeto em Typescript utilizando a biblioteca Darkcord</h1>
-	<p>Este projeto é um exemplo de como criar uma aplicação em Typescript para o Discord utilizando o pacote Darkcord.</p>
+	<p>Este projeto é um exemplo de como criar uma <a href="https://discord.com/developers/applications">aplicação</a> em <a href="https://www.typescriptlang.org/">Typescript</a> para o Discord utilizando o pacote <a href="https://github.com/JustAWaifuHunter/Darkcord.git">Darkcord</a>.</p>
 <h2>Clonando o repositório</h2>
 <p>Para clonar o repositório, execute o seguinte comando em seu terminal:</p>
 
@@ -27,10 +27,10 @@
 <p>Contribuições são sempre bem-vindas! Caso você queira contribuir com este projeto, por favor abra uma issue ou envie um pull request.</p>
 
 <h2>Creditos</h2>
-<p>Toda a biblioteca Darkcord foi criada pelo <a href="https://github.com/JustAWaifuHunter">JustAWaifuHunter</a> e todos os créditos devem ser dados a ele. Este projeto é apenas um exemplo de como utilizar essa biblioteca em uma aplicação para o Discord.</p>
+<p>Toda a biblioteca <a href="https://github.com/JustAWaifuHunter/Darkcord.git">Darkcord</a> foi criada pelo <a href="https://github.com/JustAWaifuHunter">JustAWaifuHunter</a> e todos os créditos devem ser dados a ele. Este projeto é apenas um exemplo de como utilizar essa biblioteca em uma <a href="https://discord.com/developers/applications">aplicação para o Discord</a>.</p>
 
 <h2>Como utilizar o projeto</h2>
-<p>Para utilizar este projeto como base para sua própria aplicação, siga os passos abaixo:</p>
+<p>Para utilizar este projeto como base para sua própria <a href="https://discord.com/developers/applications">aplicação</a>, siga os passos abaixo:</p>
 
 <ol>
 	<li>Clone o repositório:</li>
@@ -48,7 +48,7 @@
 </ol>
 
 <h2>Como contribuir com o projeto</h2>
-<p>Se você quiser contribuir com este projeto, siga os passos abaixo:</p>
+<p>Se você quiser contribuir com <a href="https://github.com/JauumVictor/RyuDark">este projeto</a>, siga os passos abaixo:</p>
 
 <ol>
 	<li>Faça um fork do projeto.</li>
@@ -68,7 +68,7 @@
 <p>Assim que o pull request for aprovado, suas mudanças serão incorporadas ao projeto.</p>
 
 <h2>Conclusão</h2>
-<p>Este projeto é apenas um exemplo de como criar uma aplicação para o Discord utilizando a biblioteca Darkcord em Typescript. Sinta-se à vontade para utilizar este projeto como base para sua própria aplicação, e contribuir com melhorias e novas funcionalidades.</p>
+<p>Este projeto é apenas um exemplo de como criar uma <a href="https://discord.com/developers/applications">aplicação para o Discord</a> utilizando a biblioteca <a href="https://github.com/JustAWaifuHunter/Darkcord.git">Darkcord</a> em <a href="https://www.typescriptlang.org/">Typescript</a>. Sinta-se à vontade para utilizar este projeto como base para sua própria aplicação, e contribuir com melhorias e novas funcionalidades.</p>
 </body>
 </html>
 

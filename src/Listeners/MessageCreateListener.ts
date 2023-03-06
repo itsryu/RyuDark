@@ -13,7 +13,7 @@ export default class MessageCreateListener extends ListenerStructure<Ryuzaki, ev
     execute(message: Message) {
         try {
             if (message.user.bot) return;
-    
+
             if (message.content.match(this.client.utils.GetMention(this.client.user?.id as string))) {
                 message.reply(`Oi ${message.user.username}, o meu nome é ${this.client.user?.username}!`);
             }
@@ -41,7 +41,7 @@ export default class MessageCreateListener extends ListenerStructure<Ryuzaki, ev
                     }
                 });
 
-                commandExecute.catch( (err: Error | any) => {
+                commandExecute.catch((err: Error | any) => {
                     this.client.logger.error(err.message, command.data.options.name);
                     this.client.logger.warn(err.stack, command.data.options.name);
 
@@ -49,8 +49,8 @@ export default class MessageCreateListener extends ListenerStructure<Ryuzaki, ev
                 });
 
             }
-        } catch (err: Error | any) {
-            return this.client.logger.error(err.stack, MessageCreateListener.name);
+        } catch (err: unknown) {
+            return this.client.logger.error((err as Error)?.stack || 'Unknown error', MessageCreateListener.name);
         }
     }
 }
