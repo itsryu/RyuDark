@@ -9,7 +9,7 @@ export default class MessageCreateListener extends ListenerStructure {
         });
     }
 
-    execute(message: Message): any {
+    async execute(message: Message): Promise<any> {
         try {
             if (message.user.bot) return;
 
@@ -30,6 +30,8 @@ export default class MessageCreateListener extends ListenerStructure {
                 if (command.data.options.config.devOnly && !this.client.developers.some((id) => [id].includes(message.user.id))) {
                     return message.reply(`${message.user}, este comando \`${command.data.options.name}\` só pode ser executado pelos desenvolvedores do BOT.`);
                 }
+
+                await message.channel?.sendTyping();
 
                 // Execução:
                 const commandExecute = new Promise((resolve, reject) => {
