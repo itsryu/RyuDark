@@ -15,6 +15,7 @@ interface CommandExecuteOptions {
     args?: string[];
     prefix?: string;
 }
+
 export abstract class CommandData {
     options: commandRawData;
 

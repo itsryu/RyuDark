@@ -5,6 +5,7 @@ type EventOptions = {
     name: keyof ClientEvents;
     once?: boolean;
 };
+
 export abstract class ListenerStructure {
     readonly client: RyuDark;
     readonly options: EventOptions;

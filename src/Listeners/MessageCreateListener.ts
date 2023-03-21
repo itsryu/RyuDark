@@ -47,8 +47,8 @@ export default class MessageCreateListener extends ListenerStructure {
                     return message.reply(`${message.user}, ocorreu um erro ao executar o comando: \`${command.data.options.name}\`, os desenvolvedores já estão ciente do problema, tente novamente mais tarde.`);
                 });
             }
-        } catch (err: unknown) {
-            this.client.logger.error((err as Error).stack || 'Unknown error', MessageCreateListener.name);
+        } catch (err) {
+            this.client.logger.error((err as Error).stack as string, MessageCreateListener.name);
         }
     }
 }

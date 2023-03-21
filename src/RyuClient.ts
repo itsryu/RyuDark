@@ -1,6 +1,7 @@
 import { Client, ClientOptions, Cache } from 'darkcord';
 import { CommandStructure, ServiceStructure } from './Structures';
 import { Logger, Utils } from './Utils/utils';
+
 export class RyuDark extends Client {
     readonly logger: Logger;
     readonly utils: Utils;
