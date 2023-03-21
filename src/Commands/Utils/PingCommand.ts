@@ -1,4 +1,4 @@
-import { CommandStructure,  ClientEmbed } from '../../Structures';
+import { CommandStructure, ClientEmbed } from '../../Structures';
 import { PingCommandData } from '../../Data/Commands/Utils/PingCommandData';
 import { RyuDark } from '../../RyuClient';
 import { Message } from 'darkcord';
@@ -13,7 +13,7 @@ export default class PingCommand extends CommandStructure {
         const clientMs: string = this.client.websocket.ping + 'ms';
         const embed = new ClientEmbed(this.client.user, {
             title: 'Ping 🏓',
-            description: `Latência da API: \`${clientMs}\`\nLatência da mensagem: \`${messageMs}\``
+            description: `**Latência da API**: \`${clientMs}\`\n**Latência da mensagem**: \`${messageMs}\``
         });
 
         return message.reply({ embeds: [embed] });

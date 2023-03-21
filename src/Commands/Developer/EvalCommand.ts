@@ -19,7 +19,7 @@ export default class EvalCommand extends CommandStructure {
             message.reply({
                 content: `\`\`\`js\n${evaled.slice(0, 1970)}\`\`\``
             });
-        } catch (err: unknown) {
+        } catch (err) {
             message.reply({
                 content: `\`\`\`js\n${(err as Error).message.slice(0, 2000)}\`\`\``
             });
