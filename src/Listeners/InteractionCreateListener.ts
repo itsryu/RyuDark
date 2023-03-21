@@ -29,6 +29,7 @@ export default class InteractionCreateListener extends ListenerStructure {
                     delete: async () => await (interaction as ReplyableInteraction).deleteOriginalReply()
                 });
 
+                // Execução:
                 const interactionExecute = new Promise((resolve, reject) => {
                     try {
                         resolve(command.execute({ message, args }));
@@ -37,9 +38,9 @@ export default class InteractionCreateListener extends ListenerStructure {
                     }
                 });
 
-                interactionExecute.catch(async (err) => {
+                interactionExecute.catch(async (err: Error) => {
                     this.client.logger.error(err.message, command.data.options.name);
-                    this.client.logger.warn(err.stack, command.data.options.name);
+                    this.client.logger.warn(err.stack as string, command.data.options.name);
 
                     return await interaction.reply( `${message.user}, ocorreu um erro ao executar o comando: \`${command.data.options.name}\`, os desenvolvedores já estão ciente do problema, tente novamente mais tarde.`);
                 });

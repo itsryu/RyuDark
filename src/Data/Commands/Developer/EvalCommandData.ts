@@ -18,7 +18,8 @@ class EvalCommandDataConstructor extends CommandData {
                     required: true,
                     type: ApplicationCommandOptionType.String
                 }
-            ]
+            ],
+            
         });
     }
 }

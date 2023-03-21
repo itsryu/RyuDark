@@ -42,7 +42,7 @@ export default class MessageCreateListener extends ListenerStructure {
 
                 commandExecute.catch((err: Error) => {
                     this.client.logger.error(err.message, command.data.options.name);
-                    this.client.logger.warn((err as Error).stack || 'Unknown error', command.data.options.name);
+                    this.client.logger.warn(err.stack as string, command.data.options.name);
 
                     return message.reply(`${message.user}, ocorreu um erro ao executar o comando: \`${command.data.options.name}\`, os desenvolvedores já estão ciente do problema, tente novamente mais tarde.`);
                 });

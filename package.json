@@ -1,7 +1,7 @@
 {
   "name": "ryudark",
   "description": "Aplicação em Typescript utilizando a biblioteca Darkcord.",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "license": "MIT",
   "scripts": {
     "compile": "npx tsc --project tsconfig.json --pretty --noEmitOnError && echo Arquivos compilados com sucesso!",
