@@ -3,31 +3,16 @@ import { RyuDark } from '../RyuClient';
 
 type EventOptions = {
     name: keyof ClientEvents;
-    once: boolean;
+    once?: boolean;
 };
+export abstract class ListenerStructure {
+    readonly client: RyuDark;
+    readonly options: EventOptions;
 
-abstract class eventData<T extends EventOptions> {
-    name: T['name'];
-    once: T['once'];
-
-    constructor(options: T) {
-        this.name = options.name; 
-        this.once = options.once;
-    } 
-}
-
-abstract class ListenerStructure<Client extends RyuDark, Data extends eventData<EventOptions>> {
-    client: Client;
-    options: Data;
-
-    constructor(client: Client, options: Data) {
+    constructor(client: RyuDark, options: EventOptions) {
         this.client = client;
         this.options = options;
     }
 
-    execute(...args: any[]): Awaitable<any> {
-        return { args };
-    }
+    abstract execute(...args: ClientEvents[keyof ClientEvents]): Awaitable<void> | void;
 }
-
-export { ListenerStructure, eventData, EventOptions };

@@ -1,37 +1,42 @@
 {
-    "compilerOptions": {
-      "target": "ES2022",
-      "module": "commonjs",
-      "lib": ["ES2022"],
-      "esModuleInterop": true,
-      "sourceMap": true,
-      "outDir": "./dist",
-      "strict": true,
-      "moduleResolution": "node",
-      "resolveJsonModule": true,
-      "noImplicitAny": true,
-      "noImplicitReturns": true,
-      "noImplicitThis": true,
-      "noUnusedLocals": true,
-      "noUnusedParameters": true,
-      "strictFunctionTypes": true,
-      "strictNullChecks": true,
-      "strictPropertyInitialization": true,
-      "typeRoots": ["./node_modules/@types", "./src/types"],
-      "experimentalDecorators": true,
-      "emitDecoratorMetadata": true,
-      "baseUrl": "./src",
-      "skipLibCheck": true // Adicionando por hora esta propriedade.
-    },
-    "include": [
-      "./src/**/*.ts", 
-      "./*.ts"
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "commonjs",
+    "lib": [
+      "ES2022"
     ],
-    "exclude": [
-      "./node_modules"
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "outDir": "./dist",
+    "strict": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/types"
     ],
-    "types": [
-      "node"
-    ]
-  }
-  
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "./src/**/*.ts",
+    "./*.ts"
+  ],
+  "exclude": [
+    "./node_modules"
+  ],
+  "types": [
+    "node"
+  ]
+}

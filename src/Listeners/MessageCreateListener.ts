@@ -1,28 +1,27 @@
 import { RyuDark } from '../RyuClient';
-import { ListenerStructure, EventOptions, CommandStructure, CommandData } from '../Structures/';
+import { ListenerStructure, CommandStructure } from '../Structures';
 import { Constants, Message } from 'darkcord';
 
-export default class MessageCreateListener extends ListenerStructure<RyuDark, EventOptions> {
+export default class MessageCreateListener extends ListenerStructure {
     constructor(client: RyuDark) {
         super(client, {
-            name: Constants.Events.MessageCreate,
-            once: false
+            name: Constants.Events.MessageCreate
         });
     }
 
-    execute(message: Message) {
+    execute(message: Message): any {
         try {
             if (message.user.bot) return;
 
             if (message.content.match(this.client.utils.GetMention(this.client.user?.id as string))) {
-                message.reply(`Oi ${message.user}, o meu nome é ${this.client.user?.username}!`);
+                return message.reply(`Oi ${message.user}, o meu nome é ${this.client.user?.username}!`);
             }
 
-            const prefix = process.env.PREFIX as string ?? 'r.';
+            const prefix = process.env.PREFIX ?? 'r.';
 
             if (message.content.startsWith(prefix)) {
                 const [name, ...args] = message.content.slice(prefix.length).trim().split(/ +/g);
-                const command = this.client.commands.get(name) as CommandStructure<RyuDark, CommandData> || this.client.commands.find((command: CommandStructure<RyuDark, CommandData>) => command.data.options.aliases ? command.data.options.aliases && command.data.options.aliases.includes(name) : false);
+                const command = this.client.commands.get(name) as CommandStructure || this.client.commands.find((command: CommandStructure) => command.data.options.aliases ? command.data.options.aliases && command.data.options.aliases.includes(name) : false);
 
                 if (!command) {
                     return message.reply(`${message.user}, o comando: \`${name}\` não existe. Tente outro nome.`);
@@ -41,16 +40,15 @@ export default class MessageCreateListener extends ListenerStructure<RyuDark, Ev
                     }
                 });
 
-                commandExecute.catch((err: Error | any) => {
+                commandExecute.catch((err: Error) => {
                     this.client.logger.error(err.message, command.data.options.name);
-                    this.client.logger.warn(err.stack, command.data.options.name);
+                    this.client.logger.warn((err as Error).stack || 'Unknown error', command.data.options.name);
 
                     return message.reply(`${message.user}, ocorreu um erro ao executar o comando: \`${command.data.options.name}\`, os desenvolvedores já estão ciente do problema, tente novamente mais tarde.`);
                 });
-
             }
         } catch (err: unknown) {
-            return this.client.logger.error((err as Error).stack || 'Unknown error', MessageCreateListener.name);
+            this.client.logger.error((err as Error).stack || 'Unknown error', MessageCreateListener.name);
         }
     }
 }

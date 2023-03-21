@@ -3,15 +3,16 @@ import { RyuDark } from './RyuClient';
 import { config } from 'dotenv';
 config({ path: './.env' });
 
-new RyuDark(process.env.CLIENT_TOKEN as string, {
+new RyuDark(process.env.CLIENT_TOKEN, {
     gateway: {
         intents: [
             Constants.GatewayIntentBits.Guilds,
-            Constants.GatewayIntentBits.GuildMembers,
-            Constants.GatewayIntentBits.MessageContent,
             Constants.GatewayIntentBits.GuildMessages,
-            Constants.GatewayIntentBits.GuildPresences
+            Constants.GatewayIntentBits.MessageContent,
+            Constants.GatewayIntentBits.GuildMembers
         ]
     },
-    plugins: []
+    cache: {
+        messageCacheLimitPerChannel: 10
+    }
 }).initialize();

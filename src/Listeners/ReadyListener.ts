@@ -1,8 +1,7 @@
+import { ListenerStructure } from '../Structures';
 import { RyuDark } from '../RyuClient';
-import { ListenerStructure, EventOptions } from '../Structures/ListenerStructure';
 import { Constants } from 'darkcord';
-
-export default class ReadyListener extends ListenerStructure<RyuDark, EventOptions> {
+export default class ReadyListener extends ListenerStructure {
     constructor(client: RyuDark) {
         super(client, {
             name: Constants.Events.Ready,
@@ -10,11 +9,19 @@ export default class ReadyListener extends ListenerStructure<RyuDark, EventOptio
         });
     }
 
-    execute() {
+    async execute() {
         try {
-            this.client.logger.info(`${this.client.user?.username} has been loaded completely and it's in ${this.client.guilds.cache.size} guilds.`, 'Ready');
-        } catch (err: unknown) {
-            return this.client.logger.error((err as Error).stack || 'Unknown error', ReadyListener.name);
+            const commandsArray = Array.from(this.client.commands.values(), (command) => ({
+                name: command.data.options.name,
+                description: command.data.options.description,
+                options: command.data.options.options
+            }));
+
+            await this.client.application?.bulkOverwriteCommands(commandsArray);
+
+            return this.client.logger.info(`${this.client.user?.username} has been loaded completely and it's in ${this.client.guilds.cache.size} guilds.`, 'Ready');
+        } catch (err: any) {
+            return this.client.logger.error(err.stack, ReadyListener.name);
         }
     }
 }

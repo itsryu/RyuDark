@@ -1,37 +1,36 @@
-import { CommandInteraction, Awaitable } from 'darkcord';
+import { CommandInteraction, Awaitable, Message } from 'darkcord';
+import { RESTPostAPIChatInputApplicationCommandsJSONBody } from 'discord-api-types/v10';
 import { RyuDark } from '../RyuClient';
 
-type commandRaw = {
-    name: string;
-    description: string;
-    aliases: string[];
+interface commandRawData extends RESTPostAPIChatInputApplicationCommandsJSONBody {
+    aliases?: string[];
     config: {
-        registerSlash: boolean,
-        devOnly: boolean,
+        registerSlash?: boolean,
+        devOnly?: boolean,
     };
 }
 
-abstract class CommandData {
-    options: commandRaw;
+interface CommandExecuteOptions {
+    message?: Message | CommandInteraction;
+    args?: string[];
+    prefix?: string;
+}
+export abstract class CommandData {
+    options: commandRawData;
 
-    constructor(options: commandRaw) {
+    constructor(options: commandRawData) {
         this.options = options;
     }
 }
 
-abstract class CommandStructure<Client extends RyuDark, Data extends CommandData> {
-    client: Client;
-    data: Data;
-    interaction?: CommandInteraction;
+export abstract class CommandStructure {
+    readonly client: RyuDark;
+    readonly data: CommandData;
 
-    constructor(client: Client, data: Data) {
+    constructor(client: RyuDark, data: CommandData) {
         this.client = client;
         this.data = data;
     }
 
-    execute(...args: any[]): Awaitable<any> {
-        return { args };
-    }
+    abstract execute({ ...args }: CommandExecuteOptions): Awaitable<any>;
 }
-
-export { CommandStructure, CommandData };

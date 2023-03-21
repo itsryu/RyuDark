@@ -21,7 +21,8 @@
     "node_modules/",
     "build/",
     ".git/",
-    ".vscode/"
+    ".vscode/",
+    "**/*.d.ts"
   ],
   "rules": {
     "@typescript-eslint/no-explicit-any": "off",
@@ -29,7 +30,7 @@
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/require-await": "error",
     "@typescript-eslint/no-use-before-define": "error",
-    "no-empty-function": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-empty-function": [
       "error",
       {
@@ -38,6 +39,7 @@
         ]
       }
     ],
+    "no-empty-function": "off",
     "class-methods-use-this": "off",
     "default-case": "off",
     "default-param-last": "off",
@@ -65,7 +67,7 @@
     "no-console": "off",
     "no-use-before-define": "off",
     "no-plusplus": [
-      "error",
+      "off",
       {
         "allowForLoopAfterthoughts": true
       }

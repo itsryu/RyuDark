@@ -1,25 +1,12 @@
-import { CommandStructure, CommandData } from '../../Structures';
+import { CommandStructure } from '../../Structures';
+import { EvalCommandData } from '../../Data/Commands/Developer/EvalCommandData';
 import { RyuDark } from '../../RyuClient';
 import { Message } from 'darkcord';
 import { inspect } from 'node:util';
 
-class EvalCommandData extends CommandData {
-    constructor() {
-        super({
-            name: 'eval',
-            description: 'Evaluates a code.',
-            aliases: ['pong'],
-            config: {
-                devOnly: true,
-                registerSlash: true
-            }
-        });
-    }
-}
-
-export default class EvalCommand extends CommandStructure<RyuDark, EvalCommandData> {
+export default class EvalCommand extends CommandStructure {
     constructor(client: RyuDark) {
-        super(client, new EvalCommandData());
+        super(client, EvalCommandData);
     }
 
     async execute({ message, args }: { message: Message, args: string[] }): Promise<any> {

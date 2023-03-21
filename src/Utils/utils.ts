@@ -1,4 +1,6 @@
+import { ServiceStructure } from '../Structures';
 import * as winston from 'winston';
+import { setTimeout as sleep } from 'timers/promises';
 
 export enum LogLevel {
     DEBUG = 'debug',
@@ -38,26 +40,38 @@ class Logger {
         });
     }
 
-    public debug(message: string, meta?: any): void {
+    public debug(message: string, meta?: string): void {
         this.logger.debug(message, meta);
     }
 
-    public info(message: string, meta?: any): void {
+    public info(message: string, meta?: string): void {
         this.logger.info(message, meta);
     }
 
-    public warn(message: string, meta?: any): void {
+    public warn(message: string, meta?: string): void {
         this.logger.warn(message, meta);
     }
 
-    public error(message: string, meta?: any): void {
+    public error(message: string, meta?: string): void {
         this.logger.error(message, meta);
     }
 }
 
 class Utils {
-    public GetMention(id: string) {
+    public GetMention(id: string): RegExp {
         return new RegExp(`^<@!?${id}>( |)$`);
+    }
+
+    public async executeService(service: ServiceStructure) {
+        const { amount = 1, interval = 0, wait = 0 } = service.options;
+
+        for (let i = 0; i < amount; i++) {
+            await sleep(wait);
+            service.serviceExecute();
+            if (i < amount - 1) {
+                await sleep(interval);
+            }
+        }
     }
 }
 
