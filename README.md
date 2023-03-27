@@ -2,6 +2,11 @@
 <html>
 
 <body>
+    <div align="center">
+	    <a href="https://www.codefactor.io/repository/github/jauumvictor/ryudark">
+		    <img src="https://www.codefactor.io/repository/github/jauumvictor/ryudark/badge" alt="CodeFactor" />
+	    </a>
+    </div>
     <h1>Projeto em Typescript utilizando a biblioteca Darkcord</h1>
     <p>Este projeto é um exemplo de como criar uma <a href="https://discord.com/developers/applications">aplicação</a> em <a href="https://www.typescriptlang.org/">Typescript</a> para o Discord utilizando o pacote <a href="https://github.com/JustAWaifuHunter/Darkcord.git">Darkcord</a>.</p>
     <h2>Clonando o repositório</h2>
